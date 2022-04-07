@@ -26,28 +26,28 @@ PROGRAM DEVELOPED BY : Sarankumar J
 REGISTER NUMBER : 212221230087
 
 import pandas as pd
-df=pd.read_csv('weight.csv')
+df = pd.read_csv("weight.csv")
 df
-df=df.drop("Gender",axis=1)
+df.drop('Gender',axis=1)
+df
+df.drop('Gender',axis=1,inplace=True)
 df
 df.boxplot()
-import numpy as np
 from scipy import stats
-z=np.abs(stats.zscore(df))
-print(z)
-df1=df.copy()
-df1=df1[(z<3).all(axis=1)]
-df1
+import numpy as np
+z = np.abs(stats.zscore(df))
+z
+df1 = df.copy()
+df1 = df[(z<3).all(axis = 1)]
 df1.boxplot()
-df2=df.copy()
-q1=df2.quantile(0.25)
-q3=df2.quantile(0.75)
-IQR=q3-q1
-df_new=df2[((df2>=q1-1.5*IQR)&(df2<=q3+1.5*IQR)).all(axis=1)]
-df_new
-df_new.boxplot()
-df_new
-df.to_csv('weight.csv', index=False)
+df1
+df2 = df.copy()
+q1 = df2.quantile(0.25)
+q3 = df2.quantile(0.75)
+IQR = q3-q1
+df2_new=df2[((df2>=q1-1.5*IQR)&(df2<=q3+1.5*IQR)).all(axis=1)]
+df2_new.boxplot()
+df2_new
 ~~~
 # OUTPUT:
 ![git](./output.png)
